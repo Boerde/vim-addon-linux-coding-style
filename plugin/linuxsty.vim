@@ -16,15 +16,16 @@ let g:loaded_linuxsty = 1
 function! SetLinuxFormatting()
     autocmd!
 
-    autocmd FileType c,cpp call s:LinuxFormatting()
-    autocmd FileType c,cpp call s:LinuxKeywords()
-    autocmd FileType c,cpp call s:LinuxHighlighting()
+    autocmd FileType c,h   call s:LinuxFormatting()
+    autocmd FileType c,h   call s:LinuxKeywords()
+    autocmd FileType c,h   call s:LinuxHighlighting()
     autocmd FileType diff,kconfig setlocal tabstop=8
 
     filetype detect
 endfunc
 
-command! SetLinuxFormatting call SetLinuxFormatting()
+command! SetLinuxFormattingAuto call SetLinuxFormatting()
+command! SetLinuxFormatting call s:LinuxFormatting()
 
 function s:LinuxFormatting()
     setlocal tabstop=8
@@ -32,10 +33,12 @@ function s:LinuxFormatting()
     setlocal softtabstop=8
     setlocal textwidth=80
     setlocal noexpandtab
+    setlocal nolist
 
     setlocal cindent
     setlocal formatoptions=tcqlron
     setlocal cinoptions=:0,l1,t0,g0,(0
+
 endfunction
 
 function s:LinuxKeywords()
